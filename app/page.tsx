@@ -19,7 +19,7 @@ export default function LoginPage() {
             <div className="brand-name">MVAPP</div>
           </div>
 
-          <h1 className="title">Welcome Back Creative!</h1>
+          <h1 className="title">Welcome Back!</h1>
           <p className="subtitle">We Are Happy To See You Again</p>
 
           {/* Tabs */}
