@@ -1,65 +1,121 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import "./login.css";
+
+export default function LoginPage() {
+  const [tab, setTab] = useState<"signin" | "signup">("signin");
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="shell">
+      {/* LEFT: GLASS PANEL */}
+      <section className="panel">
+        <div className="card">
+          {/* Brand */}
+          <div className="brand">
+            <div className="logo" aria-hidden="true">
+              <i className="fa-solid fa-dumbbell"></i>
+            </div>
+            <div className="brand-name">MVAPP</div>
+          </div>
+
+          <h1 className="title">Welcome Back Creative!</h1>
+          <p className="subtitle">We Are Happy To See You Again</p>
+
+          {/* Tabs */}
+          <div className="tabs" role="tablist" aria-label="Auth tabs">
+            <span className="pill" aria-hidden="true"></span>
+
+            <button
+              className={`tab ${tab === "signin" ? "active" : ""}`}
+              type="button"
+              onClick={() => setTab("signin")}
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              Sign in
+            </button>
+
+            <button
+              className={`tab ${tab === "signup" ? "active" : ""}`}
+              type="button"
+              onClick={() => setTab("signup")}
             >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+              Sign Up
+            </button>
+          </div>
+
+          {/* Form */}
+          <form
+            className="form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              // εδώ μετά θα βάλεις Supabase sign in / sign up
+              console.log("submit", tab);
+            }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <label className="field">
+              <span className="sr-only">Email</span>
+              <input type="email" placeholder="Enter your email" required />
+              <span className="icon" aria-hidden="true">
+                <i className="fa-solid fa-at"></i>
+              </span>
+            </label>
+
+            <label className="field">
+              <span className="sr-only">Password</span>
+              <input type="password" placeholder="Enter your password" required />
+              <button className="eye" type="button" aria-label="Show password">
+                <i className="fa-solid fa-lock"></i>
+              </button>
+            </label>
+
+            <div className="row">
+              <label className="check">
+                <input type="checkbox" />
+                <span className="box" aria-hidden="true">
+                  <i className="fa-solid fa-check"></i>
+                </span>
+                <span className="txt">Remember me</span>
+              </label>
+
+              <a className="link" href="#">
+                Forgot Password?
+              </a>
+            </div>
+
+            <button className="primary" type="submit">
+              {tab === "signin" ? "Login" : "Create account"}
+            </button>
+
+            <div className="divider">
+              <span>OR</span>
+            </div>
+
+            <button className="oauth apple" type="button">
+              <span className="oauth-ic" aria-hidden="true">
+                <i className="fa-brands fa-apple"></i>
+              </span>
+              <span className="oauth-text">Log in with Apple</span>
+            </button>
+
+            <button className="oauth google" type="button">
+              <span className="oauth-ic" aria-hidden="true">
+                <i className="fa-brands fa-google"></i>
+              </span>
+              <span className="oauth-text">Log in with Google</span>
+            </button>
+          </form>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* RIGHT: HERO */}
+      <section className="hero" aria-hidden="true">
+        <div className="hero-overlay">
+          <div className="legal">
+            <small>© 2025 MVAPP. All rights reserved.</small>
+            <small>Unauthorized use or reproduction is prohibited.</small>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
