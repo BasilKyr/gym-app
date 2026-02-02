@@ -83,16 +83,16 @@ export default function HomePage() {
       } else if (window.api) {
         try {
           await window.api("logout");
-        } catch {}
+        } catch { }
       }
 
       localStorage.removeItem("session");
       localStorage.removeItem("user");
       localStorage.removeItem("token");
 
-      window.location.href = "login_main.html";
+      window.location.href = "/login";
     } catch {
-      window.location.href = "login_main.html";
+      window.location.href = "/login";
     }
   }
 
