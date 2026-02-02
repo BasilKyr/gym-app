@@ -70,7 +70,7 @@ body::after{
 /* Card (login) bigger + more spacing */
 .card{
   width: 100%;
-  max-width: 520px;
+  max-width: 440px;
   border-radius: 28px;
   padding: 34px 34px 30px;
 }
@@ -117,7 +117,7 @@ body::after{
 }
 
 .subtitle{
-  margin: 20px 0 22px;
+  margin: 10px 0 22px;
   color: var(--muted);
   font-size: 14px;
 }
@@ -129,9 +129,9 @@ body::after{
   background: rgba(255,255,255,.75);
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 5px;
+  padding: 2px;
   gap: 6px;
-  margin-bottom: 18px;
+  margin-bottom: 25px;
   overflow: hidden;
 }
 
@@ -182,12 +182,12 @@ body::after{
 }
 .field input{
   width:100%;
-  padding: 15px 48px 15px 16px;
+  padding: 10px 48px 10px 16px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: rgba(255,255,255,.9);
   outline:none;
-  font-size: 15px;
+  font-size: 14px;
 }
 .field input:focus{
   border-color: rgba(61,125,241,.65);
@@ -196,7 +196,7 @@ body::after{
 .icon{
   position:absolute;
   right: 14px;
-  top:50%;
+  top:54%;
   transform: translateY(-50%);
   color:#9aa3b2;
   pointer-events:none;
@@ -206,7 +206,7 @@ body::after{
 .eye{
   position:absolute;
   right: 10px;
-  top:50%;
+  top:54%;
   transform: translateY(-50%);
   border:0;
   background: transparent;
@@ -237,15 +237,15 @@ body::after{
 
 /* Primary button */
 .primary{
-  margin-top: 6px;
+  margin-top: 10px;
   border:0;
-  padding: 15px 16px;
+  padding: 10px 16px;
   border-radius: 999px;
   background: linear-gradient(180deg, var(--blue) 0%, var(--blue2) 100%);
   color:#fff;
   font-weight: 750;
   cursor:pointer;
-  font-size: 15px;
+  font-size: 14px;
   box-shadow: 0 10px 22px rgba(46,111,232,.25);
 }
 .primary:hover{ filter: brightness(1.02); }
@@ -256,48 +256,48 @@ body::after{
   display:flex;
   align-items:center;
   gap: 10px;
-  color: #8e8e8e;
+  color: #4b4b4b77;
   font-size: 12px;
   justify-content:center;
+  font-weight: 700;
 }
 .divider::before,
 .divider::after{
   content:"";
-  height:1px;
+  height:1.2px;
   flex:1;
-  background: #8e8e8e;
+  background: #4b4b4b57;
 }
 .divider span{ padding: 0 6px; }
 
 /* OAuth buttons */
 .oauth{
   border-radius: 999px;
-  padding: 14px 16px;
+  padding: 10px 0px 10px 0px;
   cursor:pointer;
   display:flex;
   align-items:center;
-  gap: 12px;
+  gap: 10px;
   width: 100%;                 /* για να κεντράρει σωστά μέσα στο card */
   justify-content: center;  /* ΟΧΙ center */
   font-weight: 750;
   border: 1px solid var(--line);
   background: rgba(255,255,255,.9);
-  font-size: 16px;
+  font-size: 13px;
 }
 
 /* Σταθερό "κουτάκι" για icon */
 .oauth-ic{
-  width: 36px;     /* ίδιο σε Apple/Google -> ίδιο alignment */
-  height: 20px;
+  width: 22px;     /* ίδιο σε Apple/Google -> ίδιο alignment */
+  height: 22px;
   display:flex;
   align-items:center;
   justify-content:center;
-  flex: 0 0 36px;
 }
 
 /* Icon size */
 .oauth-ic i{
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   display:block;
 }
@@ -306,14 +306,30 @@ body::after{
 .oauth-text{
   text-align: center;
   line-height: 1;
-  margin-top: 2px;
 }
 
 /* Optional: κρατάει ίσο “κενό” δεξιά για τέλειο οπτικό κέντρο */
 .oauth::after{
   content:"";
-  flex: 0 0 36px;  /* ίδιο με .oauth-ic */
 }
+
+.oauth-row {
+  display: flex;
+  gap: 12px;
+}
+
+.oauth-row .oauth {
+  flex: 1;              /* ίσο πλάτος */
+  justify-content: center;
+}
+
+/* Σε μικρές οθόνες να γίνονται κάτω-κάτω */
+@media (max-width: 520px) {
+  .oauth-row {
+    flex-direction: column;
+  }
+}
+
 
 .oauth.apple{
   background: #111827;
@@ -382,15 +398,12 @@ body::after{
   .panel::after{ display:none; }
 }
 
-
 .icon i,
 .eye i{
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1;
   display: block;
 }
-
-
 
 .check{
   display:inline-flex;
@@ -399,7 +412,7 @@ body::after{
   cursor:pointer;
   user-select:none;
   color: var(--muted);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1;
   position: relative;
 }
@@ -412,10 +425,10 @@ body::after{
 }
 
 .check .box{
-  width: 26px;
-  height: 26px;
+  width: 22px;
+  height: 22px;
   border-radius: 999px;
-  flex: 0 0 26px;
+  flex: 0 0 22px;
 
   display:flex;
   align-items:center;
@@ -430,7 +443,7 @@ body::after{
 /* icon inside */
 .check .box i{
   padding-top: 2px;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1;
   color: #fff;
   opacity: 0;                 /* hidden when unchecked */

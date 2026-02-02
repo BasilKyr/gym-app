@@ -87,22 +87,25 @@ export default function LoginPage() {
             </button>
 
             <div className="divider">
-              <span>OR</span>
+              <span>OR Login with :</span>
             </div>
 
-            <button className="oauth apple" type="button">
-              <span className="oauth-ic" aria-hidden="true">
-                <i className="fa-brands fa-apple"></i>
-              </span>
-              <span className="oauth-text">Log in with Apple</span>
-            </button>
+           <div className="oauth-row">
+  <button className="oauth apple" type="button">
+    <span className="oauth-ic" aria-hidden="true">
+      <i className="fa-brands fa-apple"></i>
+    </span>
+    <span className="oauth-text">Apple</span>
+  </button>
 
-            <button className="oauth google" type="button">
-              <span className="oauth-ic" aria-hidden="true">
-                <i className="fa-brands fa-google"></i>
-              </span>
-              <span className="oauth-text">Log in with Google</span>
-            </button>
+  <button className="oauth google" type="button">
+    <span className="oauth-ic" aria-hidden="true">
+      <i className="fa-brands fa-google"></i>
+    </span>
+    <span className="oauth-text">Google</span>
+  </button>
+</div>
+
           </form>
         </div>
       </section>

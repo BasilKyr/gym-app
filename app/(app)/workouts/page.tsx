@@ -68,25 +68,6 @@ export default function WorkoutsPage() {
     <main className="workouts">
       <h1 className="workouts__title">Workouts</h1>
 
-      <section className={`card ${statusClass}`}>
-        <div className="statusRow">
-          <div className="statusBadge">
-            <span className="dot" />
-            {status.state === "checking" && <span>Checking DB connection…</span>}
-            {status.state === "ok" && <span>{status.message}</span>}
-            {status.state === "error" && <span>{status.message}</span>}
-          </div>
-
-          <span className="muted">
-            Table: <b>public.workouts</b>
-          </span>
-        </div>
-
-        <div className="envHint">
-          Using env: <code>NEXT_PUBLIC_SUPABASE_URL</code> +{" "}
-          <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code>
-        </div>
-      </section>
 
       <section className="tableWrap" style={{ marginTop: 16 }}>
         {rows.length === 0 && status.state !== "checking" && (

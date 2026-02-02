@@ -4,8 +4,6 @@ import "../globals.css";
 
 import "./home/sidebar.css";
 
-import "./home/home.css";
-
 export const metadata: Metadata = {
   title: "MVAPP",
 };

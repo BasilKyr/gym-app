@@ -1,8 +1,12 @@
 // app/page.tsx
+
 "use client";
 
 import Link from "next/link";
+
 import { useEffect, useState } from "react";
+
+import "./home.css"; 
 
 declare global {
   interface Window {
@@ -154,7 +158,7 @@ export default function HomePage() {
         {/* LEFT SIDEBAR */}
         <aside className="side-nav" aria-label="Sidebar">
           <div className="side-nav__top">
-            <Link className="side-brand" href="/" aria-label="MVAPP Home">
+            <Link className="side-brand" href="" aria-label="MVAPP Home">
               <span className="side-brand__logo" aria-hidden="true">
                 <i className="fa-solid fa-dumbbell"></i>
               </span>
