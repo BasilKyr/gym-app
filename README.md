@@ -1,4 +1,4 @@
-# Gym App — Development & Deployment Guide (GitHub + Vercel)
+# Gym App — Development & Deployment Guide
 
 This document explains the day‑to‑day workflow for developing and deploying the **Gym App** using:
 
