@@ -1,0 +1,358 @@
+/* =========================
+   Sidebar component (only)
+   ========================= */
+
+   :root{
+  --nav-h: 72px; /* ΒΑΛΕ ΕΔΩ το πραγματικό ύψος του navbar σου */
+}
+
+
+/* Layout: sidebar + content */
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 22px;
+  align-items: start;
+}
+
+/* Keep main content from stretching under sidebar if your container has widths */
+.app-content {
+  min-width: 0;
+}
+
+/* Sidebar base */
+
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;     /* ίδιο με τη στήλη σου */
+  height: 100dvh;   /* full height */
+  z-index: 9999;    /* πάνω από το header */
+  display: flex;
+  flex-direction: column;
+  background: var(--side-bg, #ffffff);
+  color: var(--side-text, #1c1c1c);
+  padding: 40px 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+
+  overflow-y: auto; /* αν γεμίσει, να κάνει scroll */
+}
+
+
+/* Top brand */
+.side-nav__top {
+  padding: 0px 8px 14px;
+}
+
+.side-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.side-brand__logo {
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-items: center;
+  border-radius: 50px;
+  background: rgba(0,0,0,.06);
+}
+
+/* μεγαλώνει το icon ΜΕΣΑ στο logo container */
+.side-brand__logo i{
+  font-size: 25px;   /* άλλαξέ το (πχ 32px) */
+  line-height: 2;
+}
+
+.side-brand__name {
+  font-weight:900;
+  letter-spacing: .2px;
+  font-size: 34px;
+  margin-left: 10px;
+}
+
+.side-sub {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: .6;
+}
+
+/* Menu */
+.side-menu {
+  padding: 10px 4px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.side-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 11px 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+
+  opacity: .9;
+  transition: transform .08s ease, background .15s ease, opacity .15s ease;
+}
+
+.side-item:hover {
+  background: rgba(0,0,0,.05);
+  opacity: 1;
+}
+
+.side-item:active {
+  transform: translateY(1px);
+}
+
+.side-ic {
+  width: 28px;
+  display: grid;
+  place-items: center;
+  opacity: .75;
+}
+
+.side-ic i {
+  font-size: 18px;
+  line-height: 1;
+} 
+
+.side-txt {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Active state */
+.side-item.is-active {
+  background: rgba(70, 100, 255, .12);
+  color: #2e50ff;
+}
+
+.side-item.is-active .side-ic {
+  opacity: 1;
+}
+
+/* Badge (like notification count) */
+.side-badge {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #ff4d4d;
+  color: #fff;
+}
+
+/* Classes group */
+.side-group {
+  margin-top: 10px;
+  padding: 10px 4px 0;
+}
+
+.side-group__label {
+  font-size: 12px;
+  opacity: .55;
+  padding: 8px 10px 10px;
+  letter-spacing: .3px;
+}
+
+.side-item--compact {
+  padding: 10px 10px;
+}
+
+.side-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,.35);
+  box-sizing: border-box;
+  margin-left: 5px; /* aligns like the screenshot circle */
+  margin-right: 5px;
+  opacity: .7;
+}
+
+.side-count {
+  margin-left: auto;
+  font-size: 12px;
+  opacity: .6;
+}
+
+/* Show more */
+.side-more {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+
+  margin-top: 6px;
+  padding: 10px 10px;
+  border-radius: 12px;
+
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  opacity: .6;
+}
+
+.side-more:hover {
+  background: rgba(0,0,0,.05);
+  opacity: .9;
+}
+
+/* Bottom items pinned to bottom */
+.side-nav__bottom {
+  margin-top: auto;
+  padding: 12px 4px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+/* Responsive: stack sidebar on top */
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .side-nav {
+    position: relative;
+    top: auto;
+    height: auto;
+  }
+}
+
+
+:root{
+  --side-w: 280px;
+  --side-gap: 22px;
+  --content-max: 1180px;
+}
+
+/* ΚΡΑΤΑΜΕ το grid: sidebar column + main column */
+.app-shell{
+  display: grid !important;
+  grid-template-columns: var(--side-w) 1fr !important;
+  gap: var(--side-gap) !important;
+  align-items: start !important;
+}
+
+/* Το main να είναι στη 2η στήλη και να κεντράρεται ΜΕΣΑ σε αυτή */
+.app-content{
+  grid-column: 2 !important;
+
+  /* reset ό,τι είχες βάλει με margin-left */
+  margin-left: 0 !important;
+
+  /* κεντράρισμα στο "δεξί πλαίσιο" */
+  width: min(var(--content-max), 100%) !important;
+  justify-self: center !important;
+}
+
+/* Mobile */
+@media (max-width: 980px){
+  .app-shell{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .app-content{
+    grid-column: 1 !important;
+    width: 100% !important;
+    justify-self: stretch !important;
+  }
+}
+
+
+
+
+/* smaller, subtle "Show more" */
+.side-more{
+  margin-top: 6px;
+  padding: 6px 10px;     /* μικρότερο */
+  border-radius: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  opacity: .55;
+}
+
+.side-more i{
+  font-size: 12px;
+  margin-left: 2px;
+}
+
+.side-more:hover{
+  opacity: .9;
+}
+
+
+/* Classes icons: black pill with white icon */
+.side-group .side-item--compact .side-ic{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+
+  background: #393939;
+  color: #ffffff;
+  opacity: 1;          /* override παλιά opacity */
+  flex: 0 0 28px;
+}
+
+.side-group .side-item--compact .side-ic i{
+  font-size: 12px;
+  line-height: 1;
+}
+
+
+/* === Smooth expand/collapse for Classes === */
+.side-group .side-item--compact{
+  overflow: hidden;
+  max-height: 48px;                 /* “φυσικό” ύψος ενός item */
+  transition:
+    max-height .28s ease,
+    opacity .22s ease,
+    transform .22s ease,
+    padding .28s ease,
+    margin .28s ease;
+  will-change: max-height, opacity, transform;
+}
+
+/* Κρύβουμε όσα είναι μετά τα πρώτα 4 όταν είναι collapsed */
+.side-group.is-collapsed .side-item--compact:nth-of-type(n+5){
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Όταν ανοίγει (expanded), φαίνονται ομαλά */
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(n+5){
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Προαιρετικό: “stagger” όταν ανοίγει */
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(5){ transition-delay: 10ms; }
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(6){ transition-delay: 45ms; }
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(7){ transition-delay: 80ms; }
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(8){ transition-delay: 105ms; }
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(9){ transition-delay: 150ms; }
+.side-group:not(.is-collapsed) .side-item--compact:nth-of-type(10){ transition-delay: 185ms; }

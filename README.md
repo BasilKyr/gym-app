@@ -160,7 +160,7 @@ git push
 ```bash
 git checkout develop
 git add .
-git commit -m "..."
+git commit -m "Code Changes"
 git push
 ```
 
@@ -179,6 +179,10 @@ https://github.com/BasilKyr/gym-app/
 https://vercel.com/basilkyrs-projects/gym-app
 
 
-BasilKyr@&@bnghty56789
+### PRODUCTION
 
-BasilKyr@&@bnghty56789
+gym-app-git-main-basilkyrs-projects.vercel.app/workouts
+
+### DEVELOPMENT
+
+https://gym-app-git-develop-basilkyrs-projects.vercel.app/workouts

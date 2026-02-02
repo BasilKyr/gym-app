@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import "./workouts.css";
-import { supabase } from "../../lib/supabaseClient";
+import { supabase } from "../../../lib/supabaseClient";
 
 type Workout = {
   id: number;
