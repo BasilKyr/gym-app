@@ -1,71 +1,74 @@
+# Gym App — Development & Deployment Guide (GitHub + Vercel)
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
-# 🏋️ Gym App — Git / GitHub / Vercel Guide  
-
-*(Testing & Production)*
-
-Αυτός είναι ένας **σύντομος και πρακτικός οδηγός** για το πώς δουλεύουμε με:
+This document explains the day‑to‑day workflow for developing and deploying the **Gym App** using:
 
 - **Git**
-
 - **GitHub**
-
 - **Vercel**
-
-- **2 περιβάλλοντα**: Testing & Production
-
----
-
-##  Βασική ιδέα
-
-- **`main`** → **Production** (LIVE στο internet)
-
-- **`develop`** → **Testing** (Preview στο internet)
-
-Κάθε `git push` ➜ κάνει **deploy στη Vercel**  
-
-Κάθε deploy ➜ εμφανίζεται σαν **νέα γραμμή** στο **Vercel → Deployments**
+- Two environments: **Testing (Preview)** and **Production (Live)**
 
 ---
 
-##  Πού κάνω τι
+## Table of Contents
 
--  Δοκιμές & ανάπτυξη → **`develop`**
-
--  Live site → **`main`**
+- [Getting Started (Local Development)](#getting-started-local-development)
+- [Branch Strategy](#branch-strategy)
+- [One‑Time Setup](#one-time-setup)
+- [Daily Workflow (Testing)](#daily-workflow-testing)
+- [Promote to Production](#promote-to-production)
+- [Quick Checks](#quick-checks)
+- [Troubleshooting: 403 Permission denied](#troubleshooting-403-permission-denied)
+- [Cheat Sheet](#cheat-sheet)
+- [Project Links](#project-links)
 
 ---
 
-## Αρχικό setup (μία φορά)
+## Getting Started (Local Development)
 
-### 1.1 Σωστό folder
+Install dependencies and run the dev server:
 
-Βεβαιώσου ότι είσαι στον φάκελο που έχει `package.json`:
+```bash
+npm install
+npm run dev
+# or: yarn dev / pnpm dev / bun dev
+```
+
+Open:
+
+- http://localhost:3000
+
+---
+
+## Branch Strategy
+
+We use two long‑living branches:
+
+- **main** → **Production** (LIVE on the internet)
+- **develop** → **Testing** (Preview deployments)
+
+Every `git push` triggers a deploy on **Vercel**:
+
+- Push to **develop** → Vercel **Preview** deployment (Testing)
+- Push to **main** → Vercel **Production** deployment (Live)
+
+You can see each deploy under **Vercel → Deployments**.
+
+---
+
+## One‑Time Setup
+
+### 1) Make sure you are in the correct folder
+
+You should be in the folder that contains `package.json`:
 
 ```bash
 pwd
 ls
 ```
 
-### 1.2 `.gitignore`
+### 2) Ensure `.gitignore` includes build & secrets
 
-Να ΜΗΝ ανεβαίνουν άχρηστα αρχεία:
+Recommended entries:
 
 ```gitignore
 node_modules
@@ -75,20 +78,20 @@ node_modules
 .DS_Store
 ```
 
-### 1.3 Πρώτο commit
+### 3) First commit (if not already done)
 
 ```bash
 git add .
 git commit -m "Initial commit"
 ```
 
-### 1.4 Έλεγχος GitHub remote
+### 4) Verify your GitHub remote
 
 ```bash
 git remote -v
 ```
 
-## Δημιουργία Testing branch (`develop`) — μία φορά
+### 5) Create the Testing branch (`develop`) — once
 
 ```bash
 git checkout -b develop
@@ -97,95 +100,110 @@ git push -u origin develop
 
 ---
 
-## Καθημερινή δουλειά — TESTING (`develop`)
+## Daily Workflow (Testing)
 
-### Βήματα
+Do your day‑to‑day work on **develop**:
 
 ```bash
 git checkout develop
-# κάνω αλλαγές στον κώδικα
+# make changes
 git add .
-git commit -m "Περιγραφή αλλαγής"
+git commit -m "Describe your change"
 git push
 ```
 
-### Αποτέλεσμα
+**Result:**
 
-- Vercel → **Deployments**
-
-- Νέα γραμμή: **Preview / develop**
-
-- Το **Visit** είναι το **TESTING link**
+- Vercel creates a new **Preview** deployment
+- The **Visit** link is your **Testing** environment URL
 
 ---
 
-## Πέρασμα σε PRODUCTION (`main`)
+## Promote to Production
 
-Όταν το testing είναι ΟΚ:
+Once testing looks good, merge `develop` into `main`:
+
 ```bash
 git checkout main
+git pull
 git merge develop
 git push
 ```
 
-### Αποτέλεσμα
+**Result:**
 
-- Νέα γραμμή: **Production / main (Current)**
+- Vercel creates a new **Production** deployment
+- The **Visit** link is your **Live** site URL
 
-- Το **Visit** είναι το **LIVE site**
+---
 
+## Quick Checks
 
-## Γρήγορος έλεγχος branch
+### Check current branch
 
 ```bash
 git branch --show-current
 ```
 
-## Πρόβλημα: `403 Permission denied`
+### See recent commits
 
-Συνήθως λάθος GitHub login στο μηχάνημα.
+```bash
+git log --oneline -n 10
+```
 
-### Λύση (Mac):
+---
+
+## Troubleshooting: 403 Permission denied
+
+This usually means your GitHub credentials/token are not set correctly on your machine.
+
+### macOS (recommended): GitHub CLI
 
 ```bash
 brew install gh
 gh auth login
 ```
 
-Μετά:
+Then retry:
+
 ```bash
 git push
 ```
 
-## ⚡ Cheatsheet
+---
 
-### 🧪 Testing
+## Cheat Sheet
+
+### 🧪 Testing (develop)
+
 ```bash
 git checkout develop
 git add .
-git commit -m "Code Changes"
+git commit -m "Code changes"
 git push
 ```
 
-### 🚀 Production
+### 🚀 Production (main)
+
 ```bash
 git checkout main
+git pull
 git merge develop
 git push
 ```
 
+---
 
-### Links
+## Project Links
 
-https://github.com/BasilKyr/gym-app/
+### GitHub
+- https://github.com/BasilKyr/gym-app/
 
-https://vercel.com/basilkyrs-projects/gym-app
+### Vercel Project
+- https://vercel.com/basilkyrs-projects/gym-app
 
+### Production
+- https://gym-app-git-main-basilkyrs-projects.vercel.app/workouts
 
-### PRODUCTION
-
-gym-app-git-main-basilkyrs-projects.vercel.app/workouts
-
-### DEVELOPMENT
-
-https://gym-app-git-develop-basilkyrs-projects.vercel.app/workouts
+### Development (Preview)
+- https://gym-app-git-develop-basilkyrs-projects.vercel.app/workouts
