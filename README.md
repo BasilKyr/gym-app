@@ -23,8 +23,11 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 Αυτός είναι ένας **σύντομος και πρακτικός οδηγός** για το πώς δουλεύουμε με:
 
 - **Git**
+
 - **GitHub**
+
 - **Vercel**
+
 - **2 περιβάλλοντα**: Testing & Production
 
 ---
